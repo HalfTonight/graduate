@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:ath="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="inp">
+    <header>
+        <h1><img src="images/admin_logo.png"/></h1>
+        <ul class="rt_nav">
+            <li><a href="http://www.mycodes.net" target="_blank" class="website_icon">站点首页</a></li>
+            <li><a href="#" class="clear_icon">清除缓存</a></li>
+            <li><a href="#" class="admin_icon">DeathGhost</a></li>
+            <li><a href="#" class="set_icon">账号设置</a></li>
+            <li><a href="/login" class="quit_icon">安全退出</a></li>
+        </ul>
+    </header>
+
+</div>
+<div th:fragment="left">
+    <aside class="lt_aside_nav content mCustomScrollbar">
+        <h2><a href="index.html" th:href="@{index.html}">起始页</a></h2>
+        <ul>
+            <li>
+                <dl>
+                    <dt>常用布局示例</dt>
+                    <!--当前链接则添加class:active-->
+                    <dd><a href="product_list.html" th:href="@{/productList}">商品列表示例</a></dd>
+                    <dd><a href="product_detail.html" th:href="@{/product_detail}">商品详情示例</a></dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>订单信息</dt>
+                    <dd><a href="order_list.html" th:href="@{/orderList}">订单列表示例</a></dd>
+                    <dd><a href="order_detail.html" th:href="@{/order_detail}">订单详情示例</a></dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt>会员管理</dt>
+                    <dd><a href="user_list.html" th:href="@{/userList}">会员列表示例</a></dd>
+
+                </dl>
+            </li>
+
+        </ul>
+    </aside>
+</div>
+<div th:fragment="page">
+    <aside class="paging" th:switch="${pageNum}">
+
+        <a>每页数目</a>
+        <select class="margin:10px 1;overflow:hidden;text-align:right; color-bar">
+            <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageSize=1'}"><option>1</option></a>
+            <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageSize=2'}"><option>2</option></a>
+            <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageSize=5'}"><option>5</option></a>
+        </select>
+        <a th:text="第+${pageNum+1}+页"></a>
+        <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageNum=0'}">首页</a>
+        <a th:case="0">上一页</a>
+        <a th:case="*" th:href="@{${#httpServletRequest.getRequestURI()}+'?pageNum='+${pageNum-1}}">上一页</a>
+        <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageNum=0'}">1</a>
+        <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageNum=1'}">2</a>
+        <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageNum=2'}">3</a>
+        <!--            <a> <select class="select">-->
+        <a th:href="@{${#httpServletRequest.getRequestURI()}+'?pageNum='+${pageNum+1}}">下一页</a>
+        <a>尾页</a>
+    </aside>
+</div>
+
+</body>
+</html>

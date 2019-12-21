@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>后台管理系统</title>
+<meta name="author" content="DeathGhost" />
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!--[if lt IE 9]>
+    <script src="../static/js/html5.js"></script>
+    <![endif]-->
+<script src="js/jquery.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+
+	(function($){
+		$(window).load(function(){
+			
+			$("a[rel='load-content']").click(function(e){
+				e.preventDefault();
+				var url=$(this).attr("href");
+				$.get(url,function(data){
+					$(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+					//scroll-to appended content 
+					$(".content").mCustomScrollbar("scrollTo","h2:last");
+				});
+			});
+			
+			$(".content").delegate("a[href='top']","click",function(e){
+				e.preventDefault();
+				$(".content").mCustomScrollbar("scrollTo",$(this).attr("href"));
+			});
+			
+		});
+	})(jQuery);
+</script>
+</head>
+<body>
+<!--header-->
+
+<p th:replace="bar/top::inp"></p>
+<!--aside nav-->
+<!--aside nav-->
+<p th:replace="bar/top::left"></p>
+
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+      <div class="page_title">
+       <h2 class="fl">会员列表</h2>
+       <a href="user_detail.html" class="fr top_rt_btn add_icon">添加新会员</a>
+      </div>
+      <section class="mtb">
+       <form th:action="@{userList}">
+       <select class="select">
+        <option>会员等级</option>
+        <option>普通会员</option>
+        <option>高级会员</option>
+       </select>
+        <input type="text" class="textbox textbox_225" placeholder="请输入会员号..." th:name="memberAccount"/>
+        <input type="text" class="textbox textbox_225" placeholder="请输入手机..." th:name="phoneNumber"/>
+        <input type="text" class="textbox textbox_225" placeholder="请输入电子邮件..." th:name="email"/>
+        <input type="submit" value="查询" class="group_btn" />
+       </form>
+      </section>
+      <table class="table">
+       <tr>
+        <th>Id</th>
+        <th>会员头像</th>
+        <th>会员账号</th>
+        <th>手机号码</th>
+        <th>电子邮件</th>
+        <th>验证</th>
+        <th>会员等级</th>
+        <th>账户余额</th>
+        <th>冻结资金</th>
+        <th>操作</th>
+       </tr>
+       <tr th:each="user:${users}">
+        <td class="center" th:text="${user.id}">001</td>
+        <td class="center"><img src="upload/user_002.png" width="50" height="50"/></td>
+        <td th:text="${user.getMemberAccount()}">DeathGhost</td>
+        <td class="center" th:text="${user.phoneNumber}">18300000000</td>
+        <td class="center" th:text="${user.email}">deathghost@sina.cn</td>
+        <td class="center" th:switch="${user.getVerify()}">
+         <a title="已验证"  th:case="'1'" class="link_icon">&#89;</a>
+         <a title="已验证"  th:case="'0'" class="link_icon">&#89;</a>
+        </td>
+        <td class="center" th:switch="${user.memberShip}">
+         <p class="center" th:case="'0'">普通会员</p>
+         <p class="center" th:case="'1'">普通会员</p>
+        </td>
+        <td class="center">
+         <strong class="rmb_icon">5559.00</strong>
+        </td>
+        <td class="center">
+         <strong class="rmb_icon">59.00</strong>
+        </td>
+        <td class="center">
+         <a href="user_detail.html" title="编辑" class="link_icon">&#101;</a>
+         <a href="#" title="删除" class="link_icon">&#100;</a>
+        </td>
+       </tr>
+
+      </table>
+  <p th:replace="bar/top::page"></p>
+ </div>
+</section>
+</body>
+</html>

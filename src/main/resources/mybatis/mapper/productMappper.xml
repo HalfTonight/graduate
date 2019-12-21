@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ll.p3143.mapper.ProductMappper">
+    <select id="selAllProduct" resultType="ll.p3143.entity.Product">
+        SELECT
+        *
+        FROM product_list where 1=1
+        <if test="productName != null and productName != ''">
+            and productName=#{productName}
+        </if>
+        <if test="mPrice != null and mPrice != ''">
+            and mPrice=#{mPrice}
+        </if>
+        <if test="isHotSell != null and isHotSell != ''">
+            and isHotSell=#{isHotSell}
+        </if>
+        limit #{pageNum},2
+    </select>
+
+</mapper>
