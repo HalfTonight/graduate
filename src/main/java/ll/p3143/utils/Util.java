@@ -34,6 +34,7 @@ public class Util {
     };
     //Product
     public String getProductName(){
+
         String productName = request.getParameter("qProductName");
         return productName;
     };

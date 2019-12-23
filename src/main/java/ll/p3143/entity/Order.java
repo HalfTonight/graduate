@@ -9,6 +9,8 @@ public class Order  {
 //        <th>配送方式</th>
     private int id;                 //自增主键
 
+    private int pid;                //与产品product的id对应,影应是多对一
+
     private String orderNumber;     //订单编号
 
     private String receiver;        //收件人
@@ -21,25 +23,41 @@ public class Order  {
 
     private String dispatching;     //配送方式
 
+    private String remarks;         //备注
+
+    private Product product;
+
     public Order() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Order(int id, int pid,String orderNumber, String receiver, String phone, String direction,
+                 int orderAmount, String dispatching,String remarks, Product product) {
         this.id = id;
-    }
-
-    public Order(int id, String orderNumber, String receiver, String phone, String direction, int orderAmount, String dispatching) {
-        this.id = id;
+        this.pid=pid;
         this.orderNumber = orderNumber;
         this.receiver = receiver;
         this.phone = phone;
         this.direction = direction;
         this.orderAmount = orderAmount;
         this.dispatching = dispatching;
+        this.remarks = remarks;
+        this.product = product;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getOrderNumber() {
@@ -90,17 +108,35 @@ public class Order  {
         this.dispatching = dispatching;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                "pid=" + pid +
                 ", orderNumber='" + orderNumber + '\'' +
                 ", receiver='" + receiver + '\'' +
                 ", phone='" + phone + '\'' +
                 ", direction='" + direction + '\'' +
                 ", orderAmount=" + orderAmount +
                 ", dispatching='" + dispatching + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", product=" + product +
                 '}';
     }
 }

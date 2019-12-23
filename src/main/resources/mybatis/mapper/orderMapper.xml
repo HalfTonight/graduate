@@ -4,21 +4,43 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ll.p3143.mapper.OrderMapper">
-<select id="selAllOrder" resultType="ll.p3143.entity.Order">
+    <select id="selAllOrder" resultType="ll.p3143.entity.Order">
         SELECT
         *
         FROM order_list where 1=1
         <if test="num != null and num != ''">
-                and orderNumber=#{num}
+            and orderNumber=#{num}
         </if>
         <if test="pname != null and pname != ''">
-               and receiver=#{pname}
+            and receiver=#{pname}
         </if>
         <if test="ptel != null and ptel != ''">
-              and phone=#{ptel}
+            and phone=#{ptel}
         </if>
         limit #{pageNum},2
 
-</select>
+    </select>
+    <select id="selByOrderNumber" resultType="ll.p3143.entity.Order">
+        select *
+        from order_list o
+        <choose>
+            <when test="orderNumber != null and orderNumber != ''">
+                ,product_list p where #{0}=p.id and o.orderNumber=#{0}
+            </when>
+            <otherwise>
+                where o.orderNumber=#{0}
+            </otherwise>
+        </choose>
+
+
+    </select>
+    <select id="delByOrderNumber" >
+        delete
+
+        FROM order_list where 1=1
+        <if test="orderNumber != null and orderNumber != ''">
+            and orderNumber=#{0}
+        </if>
+    </select>
 </mapper>
 

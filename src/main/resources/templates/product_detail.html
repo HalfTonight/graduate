@@ -31,26 +31,28 @@
 
             });
         })(jQuery);
-        function leave(a){
+
+        function leave(a, obj) {
             //获取name为123对应的input输入框中的值
             //document.getElementById("Error").style="";
 
-            var val = $("input[name=a]").val();
-
-            if(val == null || $.trim(val) == ''){
-                document.getElementById(a+"Error").style="";
+            var val = obj.value;
+            if (val == null || val == '') {
+                document.getElementById(a + "Error").style = "";
+            } else {
+                document.getElementById(a + "Error").style = "display:none";
             }
-            else{ document.getElementById(a+"Error").style = "display:none";}
         }
-        function down(a){
-            //获取name为123对应的input输入框中的值
 
-            var val = $("input[name=a]").val();
-
-            // if(val != null || $.trim(val) != '') {
-                document.getElementById(a+"Error").style = "display:none";
-            // }
-        }
+        // function click(a) {
+        //     //获取name为123对应的input输入框中的值
+        //
+        //     var val = $("input[name=a]").val();
+        //
+        //     //if(a != null || $.trim(a) != '') {
+        //     document.getElementById(a + "Error").style = "display:none";
+        //     //}
+        // }
 
     </script>
 </head>
@@ -70,86 +72,90 @@
             <a th:href="@{/productList}" class="fr top_rt_btn">返回产品列表</a>
         </div>
         <form th:action="@{/saveProduct}" method="post">
-        <section>
-            <ul class="ulColumn2">
-                <li>
-                    <span class="item_name" style="width:120px;" >商品名称：</span>
-                    <input type="text" class="textbox" th:id="afterError" placeholder="商品名称..." th:name="productName" onmousedown="down('productName')" onmouseleave="leave('productName')"/>
-                    <span class="errorTips" style="display:none" th:id="productNameError" th:name="errorMsg">商品名称不能为空...</span>
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;" >商品货号：</span>
-                    <input type="text" class="textbox" th:id="afterError" placeholder="商品货号..." th:name="itemNo" onmousedown="down('itemNo')" onmouseleave="leave('itemNo')" />
-                    <span class="errorTips" style="display:none" th:id="itemNoError" th:name="errorMsg">商品货号不能为空...</span>
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;" th:name="brand">品牌：</span>
-                    <select class="select">
-                        <option>选择品牌</option>
-                    </select>
+            <section>
+                <ul class="ulColumn2">
+                    <li>
+                        <span class="item_name" style="width:120px;">商品名称：</span>
+                        <input type="text" class="textbox" th:id="afterError" placeholder="商品名称..."
+                               th:name="productName"
+                               onmouseleave="leave('productName',this) "/>
+                        <span class="errorTips" style="display:none" th:id="productNameError" th:name="errorMsg">商品名称不能为空...</span>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">商品货号：</span>
+                        <input type="text" class="textbox" th:id="afterError" placeholder="商品货号..." th:name="itemNo"
+                              onmouseleave="leave('itemNo',this)"/>
+                        <span class="errorTips" style="display:none" th:id="itemNoError"
+                              th:name="errorMsg">商品货号不能为空...</span>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;" th:name="brand">品牌：</span>
+                        <select class="select">
+                            <option>选择品牌</option>
+                            <option>名牌</option>
+                            <option>普通</option>
+                        </select>
 
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;" >分类：</span>
-                    <select class="select" th:name="classify">
-                        <option>选择产品分类</option>
-                        <option>手机数码</option>
-                        <option>文具</option>
-                        <option>生活用品</option>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">分类：</span>
+                        <select class="select" th:name="classify">
+                            <option>选择产品分类</option>
+                            <option>手机数码</option>
+                            <option>文具</option>
+                            <option>生活用品</option>
 
-                    </select>
+                        </select>
 
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;" >单价：</span>
-                    <input type="text" class="textbox" th:id="afterError" placeholder="请输入价格..." th:name="price" onmousedown="down('price')" onmouseleave="leave('price')" />
-                    <span class="errorTips" style="display:none" th:id="priceError" th:name="errorMsg">价格不能为空...</span>
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;">单位：</span>
-                    <input type="text" class="textbox" th:id="afterError" th:name="units" placeholder="请输入单位" onmousedown="down('units')" onmouseleave="leave('units')">
-                    <span class="errorTips" style="display:none" th:id="unitsError" th:name="errorMsg">单位不能为空...</span>
-                </li>
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;">推荐：</span>
-                    <label class="single_selection"><input type="checkbox" th:name="isBoutiqueBtn"/>是否精品</label>
-                    <label class="single_selection"><input type="checkbox" th:name="isHotSellBtn"/>是否热销</label>
-                    <label class="single_selection"><input type="checkbox" th:name="isNewProductBtn"/>是否新品</label>
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;">上传图片：</span>
-                    <label class="uploadImg">
-                        <input type="file"/>
-                        <span>上传图片</span>
-                    </label>
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;">产品详情：</span>
-                    <script id="editor" type="text/plain"
-                            style="width:1024px;height:500px;margin-left:120px;margin-top:0;"></script>
-                    <!--ueditor可删除下列信息-->
-                    <input type="checkbox" style="height: 15px;width: 15px;">
-                    <input type="checkbox" style="height: 15px;width: 15px;">
-                    <input type="checkbox" style="height: 15px;width: 15px;">
-                    <input type="checkbox" style="height: 15px;width: 15px;">
-                    <input type="checkbox" style="height: 15px;width: 15px;">
-
-                </li>
-                <!--          库存 单价 单位-->
-                <li>
-                    <span class="item_name" style="width:120px;">库存：</span>
-                    <input type="text" class="textbox" th:id="afterError" th:name="repertory" placeholder="请输入库存" onmousedown="down('repertory')" onmouseleave="leave('repertory')">
-                    <span class="errorTips" style="display:none" th:id="repertoryError" th:name="errorMsg">库存不能为空...</span>
-                </li>
-                <li>
-                    <span class="item_name" style="width:120px;"></span>
-                   <input type="submit" value="添加">
-                </li>
-            </ul>
-        </section>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">单价：</span>
+                        <input type="text" class="textbox" th:id="afterError" placeholder="请输入价格..." th:name="price"
+                              onmouseleave="leave('price',this)"/>
+                        <span class="errorTips" style="display:none" th:id="priceError"
+                              th:name="errorMsg">价格不能为空...</span>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">单位：</span>
+                        <input type="text" class="textbox" th:id="afterError" th:name="units" placeholder="请输入单位"
+                              onmouseleave="leave('units',this)">
+                        <span class="errorTips" style="display:none" th:id="unitsError"
+                              th:name="errorMsg">单位不能为空...</span>
+                    </li>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">推荐：</span>
+                        <label class="single_selection"><input type="checkbox" th:name="isBoutiqueBtn"/>是否精品</label>
+                        <label class="single_selection"><input type="checkbox" th:name="isHotSellBtn"/>是否热销</label>
+                        <label class="single_selection"><input type="checkbox" th:name="isNewProductBtn"/>是否新品</label>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;">上传图片：</span>
+                        <label class="uploadImg">
+                            <input type="file"/>
+                            <span>上传图片</span>
+                        </label>
+                    </li>
+                    <li>
+                        <span   class="item_name"  style="width:120px;">产品详情：</span>
+                        <input type="text" class="textbox" style="width:200px;" placeholder="请输入产品详情">
+                    </li>
+                    <!--          库存 单价 单位-->
+                    <li>
+                        <span class="item_name" style="width:120px;">库存：</span>
+                        <input type="text" class="textbox" th:id="afterError" th:name="repertory" placeholder="请输入库存"
+                             onmouseleave="leave('repertory',this)">
+                        <span class="errorTips" style="display:none" th:id="repertoryError"
+                              th:name="errorMsg">库存不能为空...</span>
+                    </li>
+                    <li>
+                        <span class="item_name" style="width:120px;"></span>
+                        <input type="submit" value="添加">
+                    </li>
+                </ul>
+            </section>
         </form>
-    </div>
+</div>
 </section>
 </body>
 </html>

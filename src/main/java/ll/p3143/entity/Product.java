@@ -6,6 +6,13 @@ import java.io.Serializable;
 
 @Service
 public class Product implements Serializable {
+    private int id;             //自增主键
+
+    private String brand;       //品牌
+
+    private String classify;    //分类
+
+    private String recommend;    //推荐
 
     private String thumbnail;   //缩略图
 
@@ -28,13 +35,54 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(String thumbnail, String productName, int itemNo, int price, String units,
-                   int isBoutique, int isNewProduct, int isHotSell, int repertory) {
+    public Product(int id, String brand, String classify, String recommend, String thumbnail, String productName, int itemNo,
+                   int price, String units, int isBoutique, int isNewProduct, int isHotSell, int repertory) {
+        this.id = id;
+        this.brand = brand;
+        this.classify = classify;
+        this.recommend = recommend;
         this.thumbnail = thumbnail;
         this.productName = productName;
-
+        this.itemNo = itemNo;
+        this.price = price;
+        this.units = units;
+        this.isBoutique = isBoutique;
+        this.isNewProduct = isNewProduct;
         this.isHotSell = isHotSell;
         this.repertory = repertory;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getClassify() {
+        return classify;
+    }
+
+    public void setClassify(String classify) {
+        this.classify = classify;
+    }
+
+    public String getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(String recommend) {
+        this.recommend = recommend;
     }
 
     public String getThumbnail() {
@@ -112,15 +160,19 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "Product{" +
-                "thumbnail='" + thumbnail + '\'' +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", classify='" + classify + '\'' +
+                ", recommend='" + recommend + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
                 ", productName='" + productName + '\'' +
-                ", itemNo='" + itemNo + '\'' +
+                ", itemNo=" + itemNo +
                 ", price=" + price +
                 ", units='" + units + '\'' +
                 ", isBoutique=" + isBoutique +
                 ", isNewProduct=" + isNewProduct +
-                ", isHotSell='" + isHotSell +
-                ", repertory='" + repertory + '\'' +
+                ", isHotSell=" + isHotSell +
+                ", repertory=" + repertory +
                 '}';
     }
 }

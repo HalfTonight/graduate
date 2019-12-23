@@ -48,61 +48,47 @@
       </div>
       <table class="table">
        <tr>
-        <td>收件人：DeathGhost</td>
-        <td>联系电话：18300000000</td>
-        <td>收件地址：陕西省西安市雁塔区丈八路2000集都市印象18栋2160室</td>
+        <td th:text="收件人 +${order?.receiver}">DeathGhost</td>
+        <td th:text=" '联系电话：'+${order?.phone}">18300000000</td>
+        <td th:text=" '收件地址：：'+${order?.direction}">陕西省西安市雁塔区丈八路2000集都市印象18栋2160室</td>
         <td>付款时间：2016-02-01 13:56</td>
        </tr>
+
        <tr>
-        <td>下单时间：2016-02-01 13:56</td>
+        <td> 下单时间：2016-02-01 13:56</td>
         <td>付款时间：2016-02-01 13:56</td>
         <td>确认时间：2016-02-01 13:56</td>
         <td>评价时间时间：---</td>
        </tr>
        <tr>
-        <td>订单状态：<a>已付款，待发货</a></td>
-        <td colspan="3">订单备注：<mark>帮我检查好呀~谢谢~</mark></td>
+        <td colspan="3" th:text=" '订单备注：：：'+${order?.remarks}"><mark>帮我检查好呀~谢谢~</mark></td>
         </tr>
       </table>
       <table class="table">
        <tr>
+        <th>缩略图</th>
+        <th>产品名称</th>
+        <th>订单编号</th>
+        <th>订单金额</th>
+        <th>详情</th>
+        <th>配送方式</th>
+           <th>单位</th>
+        <th>操作</th>
+
+       </tr>
+       <tr>
         <td class="center"><img src="upload/goods01.jpg" width="50" height="50"/></td>
-        <td>这里是产品名称</td>
-        <td class="center">A15902</td>
-        <td class="center"><strong class="rmb_icon">59.00</strong></td>
+        <td th:text="${order?.product?.productName}">这里是产品名称</td>
+<!--        要进行非空判断-->
+        <td class="center"  th:text="${order?.orderNumber}" >A15902</td>
+        <td class="center" ><strong class="rmb_icon" th:text="${order?.orderAmount}">59.00</strong></td>
         <td class="center">
          <p>颜色：蓝色</p>
          <p>尺码：XXL码</p>
         </td>
-        <td class="center"><strong>1</strong></td>
-        <td class="center"><strong class="rmb_icon">59.00</strong></td>
-        <td class="center">包</td>
-       </tr>
-       <tr>
-        <td class="center"><img src="upload/goods02.jpg" width="50" height="50"/></td>
-        <td>这里是产品名称</td>
-        <td class="center">A15902</td>
-        <td class="center"><strong class="rmb_icon">59.00</strong></td>
-        <td class="center">
-         <p>颜色：蓝色</p>
-         <p>尺码：XXL码</p>
-        </td>
-        <td class="center"><strong>2</strong></td>
-        <td class="center"><strong class="rmb_icon">118.00</strong></td>
-        <td class="center">包</td>
-       </tr>
-       <tr>
-        <td class="center"><img src="upload/goods03.jpg" width="50" height="50"/></td>
-        <td>这里是产品名称</td>
-        <td class="center">A15902</td>
-        <td class="center"><strong class="rmb_icon">59.00</strong></td>
-        <td class="center">
-         <p>颜色：蓝色</p>
-         <p>尺码：XXL码</p>
-        </td>
-        <td class="center"><strong>1</strong></td>
-        <td class="center"><strong class="rmb_icon">59.00</strong></td>
-        <td class="center">包</td>
+        <td class="center" th:text="${order?.dispatching}"><strong>1</strong></td>
+        <td class="center" >包</td>
+        <td class="center" > <a href="product_list.html" th:href="@{orderDelete+'?orderNumber='+${order?.orderNumber}}" title="删除" class="link_icon">&#100;</a></td>
        </tr>
       </table>
       <aside class="mtb" style="text-align:right;">

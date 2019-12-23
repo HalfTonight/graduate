@@ -98,7 +98,7 @@
         <td class="center">
          <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
          <a href="product_detail.html" th:href="@{/product_detail}" title="编辑" class="link_icon">&#101;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
+         <a href="product_detail.html" th:href="@{deleteProduct+'?productName='+${prod.productName}}" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
 

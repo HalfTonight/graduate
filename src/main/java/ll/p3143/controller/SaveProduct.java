@@ -1,6 +1,7 @@
 package ll.p3143.controller;
 
 import ll.p3143.entity.Product;
+import ll.p3143.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 public class SaveProduct {
     @Autowired
     Product pro;
-
+    @Autowired
+    Util util;
+    @Autowired
+    HttpServletRequest req;
     @RequestMapping("/saveProduct")
     public String saveProduct(HttpServletRequest req, Product product, Model model) {
         pro=product;
@@ -38,15 +42,14 @@ public class SaveProduct {
         } else {
             pro.setIsNewProduct(0);
         }
-        System.out.println(pro+"11111111");
+
         return "forward:/productList";
     }
-@Autowired
-HttpServletRequest req;
+
     public Product getProduct()
     {
         String classify = req.getParameter("classify");
-        System.out.println(classify);
+
         return pro;
     }
 

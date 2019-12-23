@@ -15,4 +15,13 @@ public class OrderListService {
         List<Order> orders = orderMapper.selAllOrder(pageNum,num,pname,ptel);
         return orders;
     }
+    public Order selOne(String orderNumber){
+        return orderMapper.selByOrderNumber(orderNumber);
+
+    }
+
+    public void delOne(String orderNumber){
+        orderMapper.delByOrderNumber(orderNumber);
+
+    }
 }

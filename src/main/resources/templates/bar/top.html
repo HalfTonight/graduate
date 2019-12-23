@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<!--顶部-->
 <div th:fragment="inp">
     <header>
         <h1><img src="images/admin_logo.png"/></h1>
@@ -41,13 +42,13 @@
                 <dl>
                     <dt>会员管理</dt>
                     <dd><a href="user_list.html" th:href="@{/userList}">会员列表示例</a></dd>
-
                 </dl>
             </li>
 
         </ul>
     </aside>
 </div>
+<!--页码-->
 <div th:fragment="page">
     <aside class="paging" th:switch="${pageNum}">
 

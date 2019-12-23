@@ -29,8 +29,7 @@ class DemoApplicationTests {
     void contextLoads() {
         //System.out.println(orderMapper.selAllOrder());
 //        System.out.println(userMappper.selAllUser());
-        List<Order> zhang = orderMapper.selAllOrder(1, null, "zhang", null);
-        System.out.println(zhang);
+
     }
 
 }

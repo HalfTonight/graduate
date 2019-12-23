@@ -45,7 +45,6 @@
  <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">订单列表示例</h2>
-       <a class="fr top_rt_btn add_icon">添加商品</a>
       </div>
       <section class="mtb">
           <form th:action="@{orderList}">
@@ -81,8 +80,8 @@
         <td class="center" ><strong class="rmb_icon">59.00</strong></td>
         <td th:text="${order.dispatching}" class="center">圆通快递</td>
         <td class="center">
-         <a href="#" title="查看订单" class="link_icon" target="_blank">&#118;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
+         <a href="product_detail.html" th:href="@{orderDetail +'?orderNumber='+${order.orderNumber}}" title="查看订单" class="link_icon" >&#118;</a>
+         <a href="product_list.html" th:href="@{orderDelete+'?orderNumber='+${order.orderNumber}}" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>
       </table>

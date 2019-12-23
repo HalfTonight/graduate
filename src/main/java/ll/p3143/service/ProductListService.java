@@ -16,4 +16,8 @@ public class ProductListService {
         List<Product> list = productMappper.selAllProduct(pageNum,productName,mPrice,isHotSell);
         return list ;
     }
+    public void delProduct(String productName){
+        productMappper.delProductByProductName(productName);
+
+    }
 }

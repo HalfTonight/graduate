@@ -18,5 +18,13 @@
         </if>
         limit #{pageNum},2
     </select>
+    <select id="delProductByProductName" >
+        delete
+        FROM product_list where 1=1
+        <if test="productName != null and productName != ''">
+            and productName=#{0}
+        </if>
+    </select>
+
 
 </mapper>

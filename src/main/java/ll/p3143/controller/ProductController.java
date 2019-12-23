@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,17 +27,23 @@ public class ProductController {
 
     @Autowired
     SaveProduct saveProduct;
+
     @RequestMapping("/productList")
-    public String productList(Model model , HttpServletRequest req ) {
+    public String productList(Model model, HttpServletRequest req) {
         Product newProduct = saveProduct.getProduct();
-        System.out.println(newProduct+"new");
         String isHotSell = util.getIsHotSell();
         String mPrice = util.getMPrice();
         String productName = util.getProductName();
         int pageNum = util.getPageNum();
-        List<Product> products = productListService.sellAll(pageNum,productName,mPrice,isHotSell);
-        model.addAttribute("products",products);
-        util.addPageNum(model,pageNum);
+        List<Product> products = productListService.sellAll(pageNum, productName, mPrice, isHotSell);
+        model.addAttribute("products", products);
+        util.addPageNum(model, pageNum);
         return "product_list";
+    }
+
+    @RequestMapping("/deleteProduct")
+    public String delProduct(String productName) {
+        productListService.delProduct(productName);
+        return "forward:/productList";
     }
 }

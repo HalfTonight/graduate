@@ -9,4 +9,7 @@ import java.util.List;
 public interface ProductMappper {
 
     List<Product> selAllProduct(int pageNum,String productName,String mPrice, String isHotSell);
+
+    void delProductByProductName(String productName);
+
 }
