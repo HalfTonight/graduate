@@ -43,14 +43,14 @@ public class SaveProduct {
             pro.setIsNewProduct(0);
         }
 
-        return "forward:/productList";
+        return "forward:/ProductList";
     }
-
     public Product getProduct()
     {
-        String classify = req.getParameter("classify");
+
 
         return pro;
     }
+
 
 }

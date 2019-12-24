@@ -58,7 +58,7 @@
         </select>
         <input type="text" class="textbox textbox_225" placeholder="请输入产品名称..." th:name="qProductName"/>
         <input type="text" class="textbox textbox_225" placeholder="请输入最大价格..." th:name="qMPrice"/>
-        <input type="text" class="textbox textbox_225" placeholder="是否热销..." th:name="qIsHotSell"/>
+        <input type="text" class="textbox textbox_225" placeholder="是否热销...请输入是或否" th:name="qIsHotSell"/>
         <input type="submit" value="查询" class="group_btn" />
        </form>
       </section>
@@ -97,7 +97,7 @@
         <td class="center" th:text="${prod.repertory}">5559</td>
         <td class="center">
          <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
-         <a href="product_detail.html" th:href="@{/product_detail}" title="编辑" class="link_icon">&#101;</a>
+         <a href="product_detail.html" th:href="@{updateProduct+'?productName='+${prod.productName}}" title="编辑" class="link_icon">&#101;</a>
          <a href="product_detail.html" th:href="@{deleteProduct+'?productName='+${prod.productName}}" title="删除" class="link_icon">&#100;</a>
         </td>
        </tr>

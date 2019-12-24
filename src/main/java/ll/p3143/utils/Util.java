@@ -44,7 +44,38 @@ public class Util {
     };
     public String getIsHotSell(){
         String isHotSell = request.getParameter("qIsHotSell");
-        return isHotSell;
+        System.out.println(isHotSell+"=====");
+        if("是".equals(isHotSell)){
+            return "1";
+        }
+        else if (isHotSell == null || isHotSell.trim() == "") {
+            return "1";
+        }
+         else {
+            return "0";
+        }
+
+    };
+    public String getIsNewProduct(){
+        String isHotSell = request.getParameter("qIsHotSell");
+        if(isHotSell=="是"||isHotSell=="on"){
+            return "1";
+        }
+
+        else {
+            return "0";
+        }
+
+    };
+    public String getIsBoutique(){
+        String isBoutique = request.getParameter("isBoutique");
+        if(isBoutique=="on"){
+            return "1";
+        }
+        else {
+            return "0";
+        }
+
     };
 
     //User

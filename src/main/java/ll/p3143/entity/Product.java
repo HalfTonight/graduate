@@ -30,13 +30,17 @@ public class Product implements Serializable {
 
     private int isHotSell;   //是否热销
 
+    private String particulars;  //详情
+
     private int repertory;   //库存
+
+
 
     public Product() {
     }
 
     public Product(int id, String brand, String classify, String recommend, String thumbnail, String productName, int itemNo,
-                   int price, String units, int isBoutique, int isNewProduct, int isHotSell, int repertory) {
+                   int price, String units, int isBoutique, int isNewProduct, int isHotSell, String particulars,int repertory) {
         this.id = id;
         this.brand = brand;
         this.classify = classify;
@@ -49,6 +53,7 @@ public class Product implements Serializable {
         this.isBoutique = isBoutique;
         this.isNewProduct = isNewProduct;
         this.isHotSell = isHotSell;
+        this.particulars = particulars;
         this.repertory = repertory;
     }
 
@@ -149,6 +154,14 @@ public class Product implements Serializable {
         this.isHotSell = isHotSell;
     }
 
+    public String getParticulars() {
+        return particulars;
+    }
+
+    public void setParticulars(String particulars) {
+        this.particulars = particulars;
+    }
+
     public int getRepertory() {
         return repertory;
     }
@@ -156,6 +169,8 @@ public class Product implements Serializable {
     public void setRepertory(int repertory) {
         this.repertory = repertory;
     }
+
+
 
     @Override
     public String toString() {
@@ -172,6 +187,7 @@ public class Product implements Serializable {
                 ", isBoutique=" + isBoutique +
                 ", isNewProduct=" + isNewProduct +
                 ", isHotSell=" + isHotSell +
+                ", particulars=" + particulars +
                 ", repertory=" + repertory +
                 '}';
     }

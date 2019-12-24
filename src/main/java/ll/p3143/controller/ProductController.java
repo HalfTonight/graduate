@@ -24,7 +24,6 @@ public class ProductController {
     ProductListService productListService;
     @Autowired
     Util util;
-
     @Autowired
     SaveProduct saveProduct;
 
@@ -32,6 +31,7 @@ public class ProductController {
     public String productList(Model model, HttpServletRequest req) {
         Product newProduct = saveProduct.getProduct();
         String isHotSell = util.getIsHotSell();
+        System.out.println(isHotSell);
         String mPrice = util.getMPrice();
         String productName = util.getProductName();
         int pageNum = util.getPageNum();
@@ -41,9 +41,19 @@ public class ProductController {
         return "product_list";
     }
 
+
+
     @RequestMapping("/deleteProduct")
     public String delProduct(String productName) {
         productListService.delProduct(productName);
         return "forward:/productList";
+    }
+
+    @RequestMapping("/updateProduct")
+    public String updProduct(Model model, String productName) {
+        Product product = productListService.selProduct(productName);
+        model.addAttribute("product", product);
+        System.out.println(product.getClassify());
+        return "/product_detail";
     }
 }

@@ -12,4 +12,8 @@ public interface ProductMappper {
 
     void delProductByProductName(String productName);
 
+    Product selProductByProductName(String productName);
+
+    int insProduct(Product pro);
+
 }

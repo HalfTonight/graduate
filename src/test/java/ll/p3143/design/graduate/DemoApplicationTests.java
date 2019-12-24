@@ -1,6 +1,7 @@
 package ll.p3143.design.graduate;
 
 import ll.p3143.entity.Order;
+import ll.p3143.entity.Product;
 import ll.p3143.mapper.OrderMapper;
 import ll.p3143.mapper.ProductMappper;
 
@@ -29,6 +30,10 @@ class DemoApplicationTests {
     void contextLoads() {
         //System.out.println(orderMapper.selAllOrder());
 //        System.out.println(userMappper.selAllUser());
+       Product product = productMappper.selProductByProductName("5");
+        System.out.println(product);
+
+
 
     }
 

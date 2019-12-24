@@ -20,4 +20,12 @@ public class ProductListService {
         productMappper.delProductByProductName(productName);
 
     }
+    public Product selProduct(String productName){
+        Product product = productMappper.selProductByProductName(productName);
+        return product;
+
+    }
+    public int insProduct(Product pro){
+       return productMappper.insProduct(pro);
+    }
 }

@@ -26,5 +26,13 @@
         </if>
     </select>
 
+    <select id="selProductByProductName" resultType="ll.p3143.entity.Product" >
+        select *
+        FROM product_list where 1=1
+        <if test="productName != null and productName != ''">
+            and productName=#{productName}
+        </if>
+    </select>
+
 
 </mapper>
